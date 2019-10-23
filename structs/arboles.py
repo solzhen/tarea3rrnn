@@ -62,6 +62,8 @@ class Node:
         self.__class__ = otherNode.__class__
         self.__dict__ = otherNode.__dict__
 
+    def set_val(self, name, val):
+        node.set_val(name, val) for node in self.arguments
 
 # esta clase representa todos los nodos quetienen 2 argumentos
 class BinaryNode(Node):
@@ -135,3 +137,19 @@ class TerminalNode(Node):
     def eval(self):
         # la evaluacion de un nodo terminal es el valor que contiene
         return self.value
+
+    def set_val(self, name, value):
+        pass
+
+class TerminalVariableNode(TerminalNode):
+    def __init__(self, name):
+        assert isinstance(name, str)
+        self.value = 0
+        super(TerminalVariableNode, self).__init__(self.value)
+        self.name = name
+        
+    def __repr__(self):
+        return str(self.name)
+
+    def set_val(self, name, value):
+        self.value = value if self.name == name else self.value
