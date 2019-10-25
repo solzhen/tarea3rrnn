@@ -30,7 +30,7 @@ class IteracionesCondicion(Condicion):
     def es_verdadera(self):
         self.iteracion += 1
         return self.iteracion >= self.meta
-
+        
 
 class CombinarCondiciones:
     def __init__(self, c1, c2):

@@ -63,9 +63,10 @@ class Node:
         self.__dict__ = otherNode.__dict__
 
     def set_val(self, name, val):
-        node.set_val(name, val) for node in self.arguments
+        for node in self.arguments:
+            node.set_val(name, val)
 
-# esta clase representa todos los nodos quetienen 2 argumentos
+        # esta clase representa todos los nodos quetienen 2 argumentos
 class BinaryNode(Node):
     num_args = 2
     def __init__(self, function, left, right):

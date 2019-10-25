@@ -24,3 +24,12 @@ class KnapsackValue:
             return 0
         else:
             return sum(self.valores[i] * cromosoma[i] for i in range(len(cromosoma)))
+
+class IgualdadValorFormula:
+    def __init__(self, meta):
+        self.meta = meta
+
+    def aplicar(self, nodo):
+        formula_val = nodo.eval()
+        delta = abs(self.meta - formula_val)
+        return max(self.meta - delta, 0)

@@ -31,19 +31,25 @@ class AlgoritmoGenetico:
         self.generar_poblacion()
         self.condicion.iniciar(self)
         i = 0
+        import time
+        d = time.time()
         while True:
             i += 1
             self.evaluacion()
             maxp, prom, minp = self.meta()
+            elapsed = time.time() - d
             if out:
                 sys.stdout.write("\033[K")
                 print("Generation {} Winner: {}".format(i, self.poblacion[np.argmax(self.puntajes)]))
                 print("Max Score: {} ; Average Score: {} ; Min Score: {}".format(maxp, prom, minp))
-            retorno.append([maxp, prom, minp])
+                print("Iteration time: {} seconds".format(elapsed))
+            d = time.time()
+            retorno.append([maxp, prom, minp, elapsed])
             if self.condicion.es_verdadera():
                 break
             self.seleccion()
             self.reproduccion()
+
         return np.array(retorno)
 
     def meta(self):
@@ -59,29 +65,35 @@ class AlgoritmoGenetico:
         self.puntajes = np.array([self.funcion_fitness.aplicar(self.poblacion[i]) for i in range(self.n)])
 
     def seleccion(self):
-        self.padres = np.array([
+        self.padres = [
             self.poblacion[
                 max(np.random.randint(self.n, size=5), key=lambda x: self.puntajes[x])
             ] for i in range(self.n)
-        ])
+        ]
 
     def reproduccion(self):
-        ganador = self.poblacion[np.argmax(self.puntajes)]
-        self.poblacion = np.array([
+        ganador = self.poblacion[int(np.argmax(self.puntajes))]
+        self.poblacion = [
             self.mutar(self.crossover(self.padres[i-1], self.padres[i])) for i in range(self.n)
-        ])
+        ]
         self.poblacion[-1] = ganador
 
     def crossover(self, padre, madre):
-        p = np.random.randint(0, self.n)
-        r = np.array([
-            padre[i] if i < p else madre[i] for i in range(self.largo_cromosoma)
-        ])
-        return r
+        ## CHANGE
+        new_element = padre.copy()
+        nodes_1 = new_element.serialize()
+        p1 = nodes_1[np.random.randint(0, len(nodes_1))]
+        second_element = madre.copy()
+        nodes_2 = second_element.serialize()
+        p2 = nodes_2[np.random.randint(0, len(nodes_2))]
+        p1.replace(p2)
+        return new_element
 
     def mutar(self, cromosoma):
-        return np.array([
-            cromosoma[i] if np.random.rand() > self.tasa_mutacion else self.funcion_gen() for i in range(
-                self.largo_cromosoma
-            )
-        ])
+        ## CHANGE
+        new_element = cromosoma.copy()
+        nodes_1 = new_element.serialize()
+        p1 = nodes_1[np.random.randint(0, len(nodes_1))]
+        p2 = self.funcion_gen(np.random.randint(0, 20))
+        p1.replace(p2)
+        return new_element

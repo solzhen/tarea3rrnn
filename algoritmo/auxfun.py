@@ -11,12 +11,17 @@ def heterogenetic_pop(n, l, gf):
 
 
 def ez_plot(ret):    
-    fig, ax1 = plt.subplots()
-    ax1.set_title("Gen Alg")
+    fig, ax1= plt.subplots()
     ax1.set_xlabel('Generation')
     ax1.set_ylabel('Score')
     ax1.plot(ret[:, 0], c='r', label='Max Score')
     ax1.plot(ret[:, 1], c='b', label='Average Score')
     ax1.plot(ret[:, 2], c='g', label='Min Score')
     ax1.legend()
+    plt.show()
+
+    fig, ax1= plt.subplots()
+    ax1.set_xlabel('Generation')
+    ax1.set_ylabel('Execution Time (s)')
+    ax1.plot(ret[:, 3], c='r', label='Execution time')
     plt.show()
