@@ -19,14 +19,14 @@ con un límite de generaciones de 50.
 El siguiente gráfico muestra la evolución de la función de fitness en función
 de la generación.
 
-![Figure 1](https://github.com/solzhen/tarea2rrnn/blob/master/figs/Figure_1.png)
+![Figure 1](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_1.png)
 
 El siguiente gráfico muestra el tiempo de ejecución que demoró
 el programa en ejecutar los procesos de validación, selección y reproducción
 por generación. Note como el tiempo aumenta en cada generación debido a que el crossover
 tiende a aumentar la profundidad de los árboles.
 
-![Figure 1](https://github.com/solzhen/tarea2rrnn/blob/master/figs/Figure_2.png)
+![Figure 1](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_2.png)
 
 
 ## Resultados
