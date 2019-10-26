@@ -10,7 +10,7 @@ allowed_terminals = [25, 7, 8, 100, 4, 2]
 
 meta = 65346
 
-ci = IteracionesCondicion(200)
+ci = IteracionesCondicion(500)
 
 ff = IgualdadValorFormulaYProfundidadSinRepeticion(meta, meta, 20)
 

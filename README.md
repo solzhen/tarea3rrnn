@@ -64,9 +64,25 @@ se repite algún nodo terminal con un mismo valor.
 
 ![Figure 5](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_5.png)
 
- La siguiente expresión:
+La siguiente expresión:
  
-  **((4 * 7) * (100 * 25))**
+**((4 * 7) * (100 * 25))**
   
-  que da 70000.
+que da 70000.
+  
+Con 500 generaciones y una tasa de mutación de 0.5 se tiene:
+  
+![Figure 6](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_6.png)
+
+Donde el ganador es la siguiente expresión:
+
+ **(((100 - 8) * 7) * (4 * 25))**
+
+Que da como resultado 64400
+
+## 2. Variables
+
+## 3. Symbolic Regression
+
+## 4. División
 
