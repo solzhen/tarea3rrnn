@@ -66,6 +66,13 @@ class Node:
         for node in self.arguments:
             node.set_val(name, val)
 
+    def depth(self, d):
+        max_r = d + 1
+        for node in self.arguments:
+            max_r = max(node.depth(d + 1), max_r)
+        return max_r
+
+
         # esta clase representa todos los nodos quetienen 2 argumentos
 class BinaryNode(Node):
     num_args = 2
@@ -141,6 +148,9 @@ class TerminalNode(Node):
 
     def set_val(self, name, value):
         pass
+
+    def depth(self, d):
+        return 1 + d
 
 class TerminalVariableNode(TerminalNode):
     def __init__(self, name):

@@ -1,7 +1,9 @@
-from algoritmo.auxfun import ez_plot
+from algoritmo.auxfun import heterogenetic_pop, ez_plot
 from algoritmo.genetico import AlgoritmoGenetico
 from condicion.condicion import IgualdadCondicion, IteracionesCondicion, CombinarCondiciones
-from ffuncion.fitnessfunctions import IgualdadValorFormula
+from ffuncion.fitnessfunctions import IgualdadNumericString, IgualdadValorFormulaYProfundidad
+from gfuncion.generators import binary_gen
+from structs.arboles import *
 from structs.ast import *
 
 
@@ -9,11 +11,10 @@ allowed_functions = [AddNode, SubNode, MaxNode, MultNode]
 allowed_terminals = [25, 7, 8, 100, 4, 2]
 
 meta = 65346
-c1 = IgualdadCondicion(meta)
-c2 = IteracionesCondicion(50)
-ci = CombinarCondiciones(c1, c2)
 
-ff = IgualdadValorFormula(meta)
+ci = IteracionesCondicion(50)
+
+ff = IgualdadValorFormulaYProfundidad(meta, 5)
 
 ast = AST(allowed_functions, allowed_terminals)
 

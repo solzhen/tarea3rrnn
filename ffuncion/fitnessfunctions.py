@@ -33,3 +33,17 @@ class IgualdadValorFormula:
         formula_val = nodo.eval()
         delta = abs(self.meta - formula_val)
         return max(self.meta - delta, 0)
+
+
+class IgualdadValorFormulaYProfundidad:
+    def __init__(self, meta, max_depth):
+        self.meta = meta
+        self.depth = max_depth
+
+    def aplicar(self, nodo):
+        formula_val = nodo.eval()
+        delta = abs(self.meta - formula_val)*100/abs(self.meta)
+        score1 = 100 - delta
+        gamma = self.depth - nodo.depth()
+        score2 = (self.depth + gamma)*100/self.depth
+        return score1 + score2
