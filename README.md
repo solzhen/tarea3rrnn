@@ -1,9 +1,8 @@
-# tarea3rrnn
-# Tarea 3 Algoritmo Genetico
+# Tarea 3 Programación Genética
 
-Cristóbal Fuentes
+### Cristóbal Fuentes
 
-# Ejercicios
+# Resultados Ejercicios
 
 ## 1. Encontrar Número
 
@@ -35,3 +34,20 @@ tiende a incrementar la profundidad de los árboles.
 
 Para solucionar el problema del tiempo de ejecución, 
 reducimos puntaje de los árboles demasiado profundos.
+La nueva función de fitness otorga la misma importancia
+tanto al valor de la forma como la profundidad. 
+Utiliza dos puntajes: mientras 
+mas cercano al valor buscado, más cercano a 100 el puntaje por valor,
+y mientras más cercano a 1 node de profundidad, más 
+cercano el puntaje por profundidad a 100. La suma
+de ambos puntajes es el puntaje final.
+
+![Figure 1](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_3.png)
+
+Con esto se redujo el tiempo de ejecución por generación:
+
+![Figure 1](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_4.png)
+
+
+ 
+
