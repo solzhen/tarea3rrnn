@@ -22,6 +22,9 @@ de la generación.
 
 ![Figure 1](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_1.png)
 
+El ganador es una expresión demasiado larga como para ponerla aquí.
+
+
 El siguiente gráfico muestra el tiempo de ejecución por generación, 
 es decir, el tiempo que demoró
 el programa en ejecutar los procesos de validación, selección y reproducción
@@ -48,7 +51,7 @@ como límite, tasa de mutación de 0.2:
 
 El ganador fue la siguiente expressión:
 
-**((max({25, 4}) * max({100, 4})) + ((25 * 25) * 100))**
+**((100 + 4) * (25 * 25))**
 
 Que da como resultado 65000
 
@@ -62,27 +65,72 @@ también se redujo el tiempo de ejecución por generación:
 Modificada la función fitness para otorgar el puntaje minimo si
 se repite algún nodo terminal con un mismo valor.
 
+Con 500 generaciones, población de 200 y una tasa de mutación de 0.5 se tiene:
+  
 ![Figure 5](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_5.png)
-
-La siguiente expresión:
- 
-**((4 * 7) * (100 * 25))**
-  
-que da 70000.
-  
-Con 500 generaciones y una tasa de mutación de 0.5 se tiene:
-  
-![Figure 6](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_6.png)
 
 Donde el ganador es la siguiente expresión:
 
- **(((100 - 8) * 7) * (4 * 25))**
+**((4 * (25 - 2)) * (7 * 100))**
 
 Que da como resultado 64400
 
 ## 2. Variables
 
+Para añadir variables añadí una subclase a TerminalNode que guarda
+un nombre de variable además del valor. El valor puede ser cambiado
+utilizando un método (añadido a Node), lo que permite evaluar un árbol entero asignando
+un valor específico a un nomrbe de variable. Sobre el nodo principal
+se llama set_val con 2 argumentos. El primero indica el nombre de la variable
+y el segundo el valor. Luego se puede evaluar como cualquier otro.
+
+```python
+class Node:
+    ...
+    def set_val(self, name, val):
+        for node in self.arguments:
+            node.set_val(name, val)
+...
+class TerminalNode(Node):
+    ...
+    def set_val(self, name, value):
+        pass
+...
+class TerminalVariableNode(TerminalNode):
+    def __init__(self, name):
+        assert isinstance(name, str)
+        self.value = 0
+        super(TerminalVariableNode, self).__init__(self.value)
+        self.name = name
+        
+    def __repr__(self):
+        return str(self.name)
+
+    def set_val(self, name, value):
+        self.value = value if self.name == name else self.value
+```
+
+También cambié AST para que al crear el nodo terminal lo hiciese
+en función del tipo (si era un string entonces era un terminal
+variable).
+
 ## 3. Symbolic Regression
+
+Se busca una expressión que se parezca a \
+ **x * x + x - 6**
+
+Población: 20\
+Maxima Generacion: 500\
+Tasa de mutación: 0.4
+(nota: Le di menos peso a la penalización
+por tamaño en comparación a
+una expresión equivalente)
+
+![Figure 6](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_6.png)
+
+El ganador fue la expresión \
+**((4 + (x * x)) + (x - 10))** \
+Que es equivalente en valor al buscado.
 
 ## 4. División
 

@@ -70,3 +70,20 @@ class IgualdadValorFormulaYProfundidadSinRepeticion(IgualdadValorFormulaYProfund
         gamma = nodo.depth(0) - 1
         score2 = (MAX_SCORE - gamma*MAX_SCORE / self.ddw)
         return max(score1 + score2, -MAX_SCORE)
+
+
+class VarCheckIgualdad(IgualdadValorFormulaYProfundidad):
+    def aplicar(self, nodo):
+        MAX_SCORE = 1000
+        total_score = 0
+        for v in range(-100, 100, 1):
+            nodo.set_val('x', v)
+            self.meta.set_val('x', v)
+            val1 = nodo.eval()
+            val2 = self.meta.eval()
+            delta = abs(val1 - val2) * MAX_SCORE / self.vdw
+            score1 = MAX_SCORE - delta
+            gamma = nodo.depth(0) - 1
+            score2 = (MAX_SCORE - gamma * MAX_SCORE / self.ddw)
+            total_score += score1 + score2
+        return max(total_score, -10*MAX_SCORE)

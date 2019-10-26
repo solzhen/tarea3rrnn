@@ -40,7 +40,10 @@ class AST:
             else:
                 # si `depth` es 0 entonces creamos un nodo terminal con
                 # alguno de los terminales permitidos que definimos inicialmente
-                return TerminalNode(random.choice(self.terminals))
+                c = random.choice(self.terminals)
+                if isinstance(c, str):
+                    return TerminalVariableNode(c)
+                return TerminalNode(c)
 
         # llamamos a la funcion auxiliar para crear un arbol de profundidad `max_depth`
         return create_rec_tree(max_depth)

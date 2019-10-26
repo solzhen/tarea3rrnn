@@ -22,6 +22,6 @@ def ez_plot(ret):
 
     fig, ax1= plt.subplots()
     ax1.set_xlabel('Generation')
-    ax1.set_ylabel('Execution Time (s)')
-    ax1.plot(ret[:, 3], c='r', label='Execution time')
+    ax1.set_ylabel('Execution Time p/Generation (s)')
+    ax1.plot(ret[:, 3], c='r', label='Execution time per generation')
     plt.show()
