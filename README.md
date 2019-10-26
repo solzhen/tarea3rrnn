@@ -79,8 +79,9 @@ Que da como resultado 64400
 
 Para añadir variables añadí una subclase a TerminalNode que guarda
 un nombre de variable además del valor. El valor puede ser cambiado
-utilizando un método (añadido a Node), lo que permite evaluar un árbol entero asignando
-un valor específico a un nomrbe de variable. Sobre el nodo principal
+utilizando un método (añadido a Node), lo que permite evaluar un 
+árbol entero asignando
+un valor específico a un nombre de variable. Sobre el nodo principal
 se llama set_val con 2 argumentos. El primero indica el nombre de la variable
 y el segundo el valor. Luego se puede evaluar como cualquier otro.
 
@@ -121,7 +122,8 @@ Se busca una expressión que se parezca a \
 
 Población: 20\
 Maxima Generacion: 500\
-Tasa de mutación: 0.4
+Tasa de mutación: 0.4\
+Terminales permitidas: -10, 2, 3, 4, 10, 'x'\
 (nota: Le di menos peso a la penalización
 por tamaño en comparación a
 una expresión equivalente)
@@ -134,3 +136,27 @@ Que es equivalente en valor al buscado.
 
 ## 4. División
 
+Siguiendo la sugerencia del enunciado, las excepciones ZeroDivisionError
+le dan el puntaje mínimo al árbol.
+
+Población: 20\
+Maxima Generacion: 500\
+Tasa de mutación: 0.4\
+Terminales permitidas: 1, 2, 3, 5, 7, 11, 13, 'x'
+
+
+![Figure 7](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_7.png)
+
+Con ganador:\
+**(((5 + x) - 11) + (x * x))**
+
+# Análisis
+
+## Importancia de valor e importancia profundidad 
+La función de fitness que usé utiliz dos hiperparámetros *vdw* y *ddw*,
+que son el rango de normalización de los puntajes de valor y profundidad,
+ respectivamente. Cuando vdw es pequeño, una diferencia entre el valor buscado
+ y el obtenido se penaliza con más puntaje que cuando vdw es grande. Así
+ mismo cuando ddw es pequeño, la penalización por profundidad es mayor.
+ 
+ 
