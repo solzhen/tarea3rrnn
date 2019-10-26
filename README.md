@@ -22,7 +22,7 @@ de la generación.
 
 ![Figure 1](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_1.png)
 
-El siguiente gráfico muestra el tiempo de ejecución opr generación, 
+El siguiente gráfico muestra el tiempo de ejecución por generación, 
 es decir, el tiempo que demoró
 el programa en ejecutar los procesos de validación, selección y reproducción
 por generación. Note como el tiempo aumenta en cada generación debido a que el crossover
@@ -62,11 +62,11 @@ también se redujo el tiempo de ejecución por generación:
 Modificada la función fitness para otorgar el puntaje minimo si
 se repite algún nodo terminal con un mismo valor.
 
-![Figure 4](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_4.png)
+![Figure 5](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_5.png)
 
  La siguiente expresión:
  
-  **((25 * 7) * (100 * 4))**
+  **((4 * 7) * (100 * 25))**
   
   que da 70000.
 
