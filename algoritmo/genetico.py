@@ -94,6 +94,6 @@ class AlgoritmoGenetico:
         new_element = cromosoma.copy()
         nodes_1 = new_element.serialize()
         p1 = nodes_1[np.random.randint(0, len(nodes_1))]
-        p2 = self.funcion_gen(np.random.randint(0, 20))
+        p2 = self.funcion_gen(np.random.randint(0, self.largo_cromosoma))
         p1.replace(p2)
         return new_element

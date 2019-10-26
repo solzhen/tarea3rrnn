@@ -20,7 +20,7 @@ ast = AST(allowed_functions, allowed_terminals)
 def generate_pop(n, depth, ast):
 	return [ast(depth) for _ in range(n)]
 
-ag = AlgoritmoGenetico(100, ff, ast, 0.3, ci, 5, generate_pop)
+ag = AlgoritmoGenetico(100, ff, ast, 0.3, ci, 4, generate_pop)
 
 res = ag.run()
 

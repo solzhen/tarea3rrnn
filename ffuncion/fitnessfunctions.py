@@ -1,3 +1,9 @@
+from structs.arboles import TerminalNode
+
+
+MAX_SCORE = 100000
+
+
 class IgualdadNumericString:
     def __init__(self, meta):
         self.meta = meta
@@ -43,8 +49,24 @@ class IgualdadValorFormulaYProfundidad:
 
     def aplicar(self, nodo):
         formula_val = nodo.eval()
-        delta = abs(self.meta - formula_val)*100/self.vdw
-        score1 = 100 - delta
+        delta = abs(self.meta - formula_val) * MAX_SCORE / self.vdw
+        score1 = MAX_SCORE - delta
         gamma = nodo.depth(0) - 1
-        score2 = (100 - gamma*100/self.ddw)
-        return max(score1 + score2, -200)
+        score2 = (MAX_SCORE - gamma * MAX_SCORE / self.ddw)
+        return max(score1 + score2, -MAX_SCORE)
+
+
+class IgualdadValorFormulaYProfundidadSinRepeticion(IgualdadValorFormulaYProfundidad):
+    def aplicar(self, nodo):
+        values = []
+        for node in nodo.serialize():
+            if isinstance(node, TerminalNode):
+                if node.value in values:
+                    return -MAX_SCORE
+                else:
+                    values.append(node.value)
+        delta = abs(self.meta - nodo.eval())*MAX_SCORE / self.vdw
+        score1 = MAX_SCORE - delta
+        gamma = nodo.depth(0) - 1
+        score2 = (MAX_SCORE - gamma*MAX_SCORE / self.ddw)
+        return max(score1 + score2, -MAX_SCORE)

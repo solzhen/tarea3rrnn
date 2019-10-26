@@ -28,12 +28,12 @@ el programa en ejecutar los procesos de validación, selección y reproducción
 por generación. Note como el tiempo aumenta en cada generación debido a que el crossover
 tiende a incrementar la profundidad de los árboles.
 
-![Figure 1](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_2.png)
+![Figure 2](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_2.png)
 
 ### 1.2 Fitness
 
 Para solucionar el problema del tiempo de ejecución, 
-reducimos puntaje de los árboles demasiado profundos.
+se reduce el puntaje de los árboles demasiado profundos.
 La nueva función de fitness otorga la misma importancia
 tanto al valor de la forma como la profundidad. 
 Utiliza dos puntajes: mientras 
@@ -41,13 +41,32 @@ mas cercano al valor buscado, más cercano a 100 el puntaje por valor,
 y mientras más cercano a 1 node de profundidad, más 
 cercano el puntaje por profundidad a 100. La suma
 de ambos puntajes es el puntaje final.
+Se utilizó una población de 200 individuos, con 200 generaciones
+como límite, tasa de mutación de 0.2:
 
-![Figure 1](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_3.png)
+![Figure 3](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_3.png)
 
-Con esto se redujo el tiempo de ejecución por generación:
+El ganador fue la siguiente expressión:
 
-![Figure 1](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_4.png)
+**((max({25, 4}) * max({100, 4})) + ((25 * 25) * 100))**
 
+Que da como resultado 65000
 
+Con la nueva función de fitness
+también se redujo el tiempo de ejecución por generación:
+
+![Figure 4](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_4.png)
+
+### 1.3 Sin repetición
+
+Modificada la función fitness para otorgar el puntaje minimo si
+se repite algún nodo terminal con un mismo valor.
+
+![Figure 4](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_4.png)
+
+ La siguiente expresión:
  
+  **((25 * 7) * (100 * 4))**
+  
+  que da 70000.
 
