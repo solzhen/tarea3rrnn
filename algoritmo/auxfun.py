@@ -10,6 +10,10 @@ def heterogenetic_pop(n, l, gf):
     ])
 
 
+def generate_pop(n, depth, ast):
+	return [ast(depth) for _ in range(n)]
+
+
 def ez_plot(ret):    
     fig, ax1= plt.subplots()
     ax1.set_xlabel('Generation')

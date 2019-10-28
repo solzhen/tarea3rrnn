@@ -1,4 +1,4 @@
-from algoritmo.auxfun import ez_plot
+from algoritmo.auxfun import ez_plot, generate_pop
 from algoritmo.genetico import AlgoritmoGenetico
 from condicion.condicion import IteracionesCondicion
 from ffuncion.fitnessfunctions import IgualdadValorFormulaYProfundidadSinRepeticion
@@ -12,14 +12,9 @@ meta = 65346
 
 ci = IteracionesCondicion(500)
 
-ff = IgualdadValorFormulaYProfundidadSinRepeticion(meta, meta, 20)
+ff = IgualdadValorFormulaYProfundidadSinRepeticion(meta)
 
 ast = AST(allowed_functions, allowed_terminals)
-
-
-def generate_pop(n, depth, ast):
-	return [ast(2) for _ in range(n)]
-
 
 ag = AlgoritmoGenetico(200, ff, ast, 0.5, ci, 2, generate_pop)
 

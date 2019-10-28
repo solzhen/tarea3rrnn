@@ -1,6 +1,6 @@
-from algoritmo.auxfun import ez_plot
+from algoritmo.auxfun import ez_plot, generate_pop
 from algoritmo.genetico import AlgoritmoGenetico
-from condicion.condicion import IteracionesCondicion
+from condicion.condicion import IteracionesCondicion, CombinarCondiciones, IgualdadCondicion
 from ffuncion.fitnessfunctions import VarCheckIgualdad
 from structs.ast import *
 
@@ -21,16 +21,11 @@ meta = AddNode(
 )
 
 
-ci = IteracionesCondicion(500)
+ci = CombinarCondiciones(IteracionesCondicion(500), IgualdadCondicion(100))
 
-ff = VarCheckIgualdad(meta, 1000, 10000)
+ff = VarCheckIgualdad(meta)
 
 ast = AST(allowed_functions, allowed_terminals)
-
-
-def generate_pop(n, depth, ast):
-    return [ast(2) for _ in range(n)]
-
 
 ag = AlgoritmoGenetico(20, ff, ast, 0.4, ci, 3, generate_pop)
 
