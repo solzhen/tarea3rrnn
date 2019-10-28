@@ -178,11 +178,28 @@ En la generación 114.
 
 # Análisis
 
-## Importancia de valor e importancia profundidad 
-La función de fitness que usé utiliz dos hiperparámetros *vdw* y *ddw*,
-que son el rango de normalización de los puntajes de valor y profundidad,
- respectivamente. Cuando vdw es pequeño, una diferencia entre el valor buscado
- y el obtenido se penaliza con más puntaje que cuando vdw es grande. Así
- mismo cuando ddw es pequeño, la penalización por profundidad es mayor.
+## Heatmap 
+El siguiente heatmap grafica la generación en la que se encontró la 
+expresión equivalente a \
+**x * x * x + 2 * x - 10**
+usando terminales:\
+1, 2, 3, 5, 7, 11, 13, 'x' \
+Y operaciones +, -, *, /
+
+Con un límite de 250 generaciones, variando la población y tasa de 
+mutación de la siguiente forma:
+
+tasas de mutación : 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0\
+poblaciones : 5, 10, 25, 50, 100, 150, 200, 300, 400, 500, 1000
+
+El siguiente heatmap grafica la cantidad de generaciones requeridas para
+encontrar una expresión equivalente a x * x * x + 2 * x - 10. Si después de 250
+no se consiguió encontrar el programa se detiene. Se debe asumir que 
+las coordenadas con valor 250 no lograron encontrar la expresión buscada.
+
+![Figure 8](https://github.com/solzhen/tarea3rrnn/blob/master/figs/Figure_8.png)
+
+
+
  
  

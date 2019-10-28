@@ -43,6 +43,11 @@ class IgualdadValorFormulaYProfundidadSinRepeticion(IgualdadValorFormulaYProfund
 
 
 class VarCheckIgualdad(IgualdadValorFormulaYProfundidad):
+    def __init__(self, meta, vdw=10000, ddw=5, depth=5, names=None):
+        if names is None:
+            self.names = ['x']
+        super().__init__(meta, vdw, ddw, depth)
+
     def aplicar(self, nodo):
         total_score = 0
         for v in range(-100, 101, 1):
